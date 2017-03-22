@@ -6,6 +6,6 @@
 * [JAVA](java.md)
 * [数据结构与算法](shu-ju-jie-gou-yu-suan-fa.md)
 * [计算机网络](ji-suan-ji-wang-luo.md)
-* 操作系统
+* [操作系统](cao-zuo-xi-tong.md)
 * [我的刷题记录](wo-de-shua-ti-ji-lu.md)
 

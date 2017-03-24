@@ -13,4 +13,14 @@ Looper.prepare()确保每个线程只能有一个Looper，其中的参数quitAll
 ## Message
 通常我们都会用obtain()方法去创建Message，如果消息池中有Message，则取出，没有再重新创建。这样可以防止对象的重复创建，节省资源。
 ## MessageQueue
-指的是消息队列，即存放供Handler处理的消息。MessageQueue主要包括两个操作：插入和读取。读取本身会伴随删除操作。虽然名字叫队列，但其实内部实现是通过单链表的形式实现的(单链表在插入和删除上比较有优势，而且不需要一大块连续的存储空间)
+指的是消息队列，即存放供Handler处理的消息。**MessageQueue主要包括两个操作：插入和读取。读取本身会伴随删除操作。**虽然名字叫队列，但其实内部实现是通过单链表的形式实现的(单链表在插入和删除上比较有优势，而且不需要一大块连续的存储空间)
+```
+private Looper(boolean quitAllowed) {
+        mQueue = new MessageQueue(quitAllowed);
+        mRun = true;
+        mThread = Thread.currentThread();
+}
+```
+
+
+

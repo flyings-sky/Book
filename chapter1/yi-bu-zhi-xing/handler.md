@@ -57,5 +57,5 @@ public final boolean post(Runnable r)
    }
 
 ```
-最终和Handler.sendMessage一样，调用了sendMessageAtTime，然后调用了enqueueMessage方法，给msg.target赋值为handler，最终加入MessageQueue
+最终和Handler.sendMessage一样，调用了sendMessageAtTime，然后调用了enqueueMessage方法，给msg.target赋值为handler，最终加入MessageQueue,此时Message的callback不为空，会执行handleCallback()方法
 

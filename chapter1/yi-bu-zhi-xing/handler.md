@@ -57,5 +57,5 @@ public final boolean post(Runnable r)
    }
 
 ```
-
+最终和Handler.sendMessage一样，调用了sendMessageAtTime，然后调用了enqueueMessage方法，给msg.target赋值为handler，最终加入MessageQueue
 

@@ -32,7 +32,6 @@ public static final void prepare() {
         sThreadLocal.set(new Looper(true));
 }
 ```
-
-
-
+## Looper,Handler,MessageQueue的引用关系
+一个Handler持有一个消息队列的引用和它构造时所属线程的Looper的引用
 

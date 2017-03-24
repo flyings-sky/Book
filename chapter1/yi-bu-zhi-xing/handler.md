@@ -58,4 +58,5 @@ public final boolean post(Runnable r)
 
 ```
 最终和Handler.sendMessage一样，调用了sendMessageAtTime，然后调用了enqueueMessage方法，给msg.target赋值为handler，最终加入MessageQueue,此时Message的callback不为空，会执行handleCallback()方法，也就是Runnable里面的run方法。
+## Handler中的内存泄漏问题
 

@@ -33,5 +33,7 @@ public static final void prepare() {
 }
 ```
 ## Looper,Handler,MessageQueue的引用关系
-一个Handler持有一个消息队列的引用和它构造时所属线程的Looper的引用，也就是说，一个Handler必定有它对应的消息队列和Looper，一个线程至多能有一个Looper和消息队列，但是一个线程可以有多个Handler
+一个Handler持有一个消息队列的引用和它构造时所属线程的Looper的引用，也就是说，一个Handler必定有它对应的消息队列和Looper，一个线程至多能有一个Looper和消息队列，但是一个线程可以有多个Handler.
+在主线程中New了Handler对象以后，这个Handler对象自动和主线程自动生成的Looper以及消息队列关联上了。
+在子线程中拿到主线程中Handler的引用，发送消息后，消息对象就会发送到target属性对应的那个Handler对应的消息队列中去，由对应的Looper来取出处理
 

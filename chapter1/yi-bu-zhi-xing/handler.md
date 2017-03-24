@@ -21,6 +21,18 @@ private Looper(boolean quitAllowed) {
         mThread = Thread.currentThread();
 }
 ```
+因为一个线程对应了一个Looper对象，所以可以认为一个线程也对应一个MessageQueue对象,每一个MessageQueue都不能脱离Looper存在.
+## ThreadLocal
+ThreadLocal是一个线程内部的数据存储类，通过它可以在指定的线程中存储数据，数据存储以后，只有在指定线程中可以获取到存储的数据，对于其他线程就获取不到数据。一般来说，当某些数据是以线程为作用域而且不同线程需要有不同的数据副本的时候，可以考虑使用ThreadLocal.比如：对于Handler，它要获取当前线程的Looper，很显然Looper的作用域就是线程，并且不同的线程具有不同的Looper.
+```
+public static final void prepare() {
+        if (sThreadLocal.get() != null) {
+            throw new RuntimeException(“Only one Looper may be created per thread”);
+        }
+        sThreadLocal.set(new Looper(true));
+}
+```
+
 
 
 

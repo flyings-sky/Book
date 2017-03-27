@@ -178,7 +178,6 @@ public class MainActivity extends AppCompatActivity {
         mHandler.sendMessage(message);
     }
 }
-
 ```
 
 其中mHandler作为一个非静态匿名内部类，持有一个外部类—MainActivity的引用，我们知道对于消息机制是Looper不断的轮询从消息队列取出未处理的消息交给handler处理，而对于这个例子，每一个消息又持有一个mHandler的引用，每一个mHandler又持有MainActivity的引用，所以如果在Activity退出后，消息队列中还存在未处理完的消息，导致该Activity一直被引用，其内存资源无法被回收，导致了内存泄漏。一般我们使用静态内部类和弱引用的写法写Handler。
@@ -213,8 +212,16 @@ public class MainActivity extends AppCompatActivity {
         mHandler.sendMessage(message);
     }
 }
-
 ```
+
+Java对引用的分类有强引用，软引用，弱引用，虚引用
+
+| 级别 | 回收时机 | 用途 | 生存时间 |
+| :---: | :---: | :---: | :---: |
+| 强 | 从来不会 | 对象的一般状态 | JVM停止运行时终止 |
+| 软 | 在内存不足时 | 联合ReferenceQueue构造有效期短/占内存大/生命周期长的对象的二级高速缓冲器（内存不足时才清空） | 内存不足时终止 |
+| 弱 | 在垃圾回收时 |  | GC回收时终止 |
+| 虚 | 在垃圾回收时 |  | GC回收时终止 |
 
 
 

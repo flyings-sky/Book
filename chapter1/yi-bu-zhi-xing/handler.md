@@ -120,3 +120,42 @@ static class MyHandler extends Handler{
 
 Handler运行在主线程中\(UI线程中\)，它与子线程可以通过Message对象来传递数据，这个时候，Handler就承担着接受子线程传过来的（子线程用sendMessage\(\)和post\(\)方法传递的）Message对象（里面包含数据）的任务，把这些消息放入主线程队列中，配合主线程进行更新UI。
 
+## 总结
+
+* 通过Looper的prepare方法创建MessageQueue
+* 通过loop方法找到和当前线程匹配的Looper
+
+```java
+public static void loop() {
+        final Looper me = myLooper();
+        if (me == null) {
+            throw new RuntimeException("No Looper; Looper.prepare() wasn't called on this thread.");
+        }
+        final MessageQueue queue = me.mQueue;
+        // Make sure the identity of this thread is that of the local process,
+        // and keep track of what that identity token actually is.
+        for (;;) {
+            Message msg = queue.next(); // might block
+            if (msg == null) {
+                // No message indicates that the message queue is quitting.
+                return;
+            }
+            final long traceTag = me.mTraceTag;
+            if (traceTag != 0) {
+                Trace.traceBegin(traceTag, msg.target.getTraceName(msg));
+            }
+            try {
+                msg.target.dispatchMessage(msg);
+            } finally {
+                if (traceTag != 0) {
+                    Trace.traceEnd(traceTag);
+                }
+            }
+            }
+            msg.recycleUnchecked();
+        }
+    }
+```
+
+
+

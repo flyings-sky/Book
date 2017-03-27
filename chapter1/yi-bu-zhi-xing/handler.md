@@ -27,7 +27,7 @@ Looper.prepare\(\)确保每个线程只能有一个Looper，其中的参数quitA
 
 指的是消息队列，即存放供Handler处理的消息。**MessageQueue主要包括两个操作：插入和读取。读取本身会伴随删除操作。**虽然名字叫队列，但其实内部实现是通过单链表的形式实现的\(单链表在插入和删除上比较有优势，而且不需要一大块连续的存储空间\)
 
-```
+```java
 private Looper(boolean quitAllowed) {
         mQueue = new MessageQueue(quitAllowed);
         mRun = true;
@@ -41,7 +41,7 @@ private Looper(boolean quitAllowed) {
 
 ThreadLocal是一个线程内部的数据存储类，通过它可以在指定的线程中存储数据，数据存储以后，只有在指定线程中可以获取到存储的数据，对于其他线程就获取不到数据。一般来说，当某些数据是以线程为作用域而且不同线程需要有不同的数据副本的时候，可以考虑使用ThreadLocal.比如：对于Handler，它要获取当前线程的Looper，很显然Looper的作用域就是线程，并且不同的线程具有不同的Looper.
 
-```
+```java
 public static final void prepare() {
         if (sThreadLocal.get() != null) {
             throw new RuntimeException(“Only one Looper may be created per thread”);
@@ -58,7 +58,7 @@ public static final void prepare() {
 
 ## Handler的post方法原理
 
-```
+```java
 mHandler.post(new Runnable()
         {
             @Override
@@ -72,7 +72,7 @@ mHandler.post(new Runnable()
 
 run方法中可以写更新UI的代码，其实这个Runnable并没有创建什么线程，而是发送了一条消息，下面看源码：
 
-```
+```java
 public final boolean post(Runnable r)
    {
       return  sendMessageDelayed(getPostMessage(r), 0);

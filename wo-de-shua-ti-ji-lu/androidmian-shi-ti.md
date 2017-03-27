@@ -238,7 +238,7 @@ Java对引用的分类有强引用，软引用，弱引用，虚引用
 
 ## 6.关于Broadcast和BroadcastReceiver
 
-### 自定义广播接收器的两种方式
+### 6.1自定义广播接收器的两种方式
 
 1. 静态注册
 
@@ -251,7 +251,9 @@ Java对引用的分类有强引用，软引用，弱引用，虚引用
 </receiver>
 ```
 
-    2.动态注册
+```
+2.动态注册
+```
 
 ```java
 receiver = new BroadcastReceiver();

@@ -1,4 +1,4 @@
-## 1.Android的Activity什么时候会调用onCreate\(\)而不调用onStart\(\)?
+* ## 1.Android的Activity什么时候会调用onCreate\(\)而不调用onStart\(\)?
 
 * 直接在onCreate里面finish\(\);
 * 获取当前进程的id，使用Android.os.Process.killProcess\(android.os.Process.myPid\(\)\);杀死进程，可能在后台留有缓存
@@ -305,8 +305,7 @@ context.registerReceiver(receiver, intentFilter);
 
 ### 6.9增加广播的安全性
 
-对于同一App内部发送和接收广播，将exported属性人为设置成false，使得非本App内部发出的此广播不被接收；
-
+* 对于同一App内部发送和接收广播，将exported属性人为设置成false，使得非本App内部发出的此广播不被接收；
 * 在广播发送和接收时，都增加上相应的permission，用于权限验证；
 * 发送广播时，指定特定广播接收器所在的包名，具体是通过intent.setPackage\(packageName\)指定，这样此广播将只会发送到此包中的App内与之相匹配的有效广播接收器中。
 

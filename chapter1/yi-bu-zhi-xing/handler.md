@@ -118,3 +118,5 @@ static class MyHandler extends Handler{
 
 Handler运行在主线程中\(UI线程中\)，它与子线程可以通过Message对象来传递数据，这个时候，Handler就承担着接受子线程传过来的（子线程用sendMessage\(\)和post\(\)方法传递的）Message对象（里面包含数据）的任务，把这些消息放入主线程队列中，配合主线程进行更新UI。
 
+Handler是Android操作系统中的线程通信工具
+

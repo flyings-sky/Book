@@ -35,9 +35,90 @@ manager.restartPackage(getPackageName());
 
 5.Android中常见的产生内存泄漏的场景
 
-1. 单例造成的内存泄漏
+* 单例造成的内存泄漏
 
-因为单例模式有其静态的特点，其生命周期和应用一样长，如果单例对象中包含了一个其他对象的引用，那么即使这个对象不再使用，依然存在一个单例对象引用它，就会造成无法回收。
+因为单例模式有其静态的特点，其生命周期和应用一样长，如果单例对象中包含了一个其他对象的引用，那么即使这个对象不再使用，依然存在一个单例对象引用它，就会造成无法回收。例如：
+
+```java
+public class AppManager{
+    private static AppManager instance;
+    private Context context;
+    private AppManager(Context context){
+        this.context = context;
+    }
+    public static AppManager getInstance(Context context){
+        if(instance == null){
+            instance = new AppManager(context);
+        }
+        return instance;
+    }
+}
+```
+
+这个单例对象包含了一个Context的引用，如果传入了一个Application Context它的生命周期和应用一样长，所以不会发生内存泄漏
+
+如果传入一个Activity Context，Activity退出销毁后，但仍然会被单例所引用，所以会导致内存泄漏；所以正确的单例为：
+
+```java
+public class AppManager{
+    private static AppManager instance;
+    private Context context;
+    private AppManager(Context context){
+        this.context = context.getApplicationContext();
+    }
+    public static AppManager getInstance(Context context){
+        if(instance == null){
+            instance = new AppManager(context);
+        }
+        return instance;
+    }
+}
+```
+
+* 非静态内部类创建其静态实例造成内存泄漏
+
+```java
+public class MainActivity extends AppCompatActivity {
+    private static TestResource mResource = null;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        if(mResource == null){
+            mResource = new TestResource();
+        }
+        //...
+    }
+    class TestResource {
+        //...
+    }
+}
+```
+
+这样就在Activity内部创建了一个非静态内部类的单例，每次启动Activity时都会使用该单例的数据，这样虽然避免了资源的重复创建，不过这种写法却会造成内存泄露，因为非静态内部类默认会持有外部类的引用，而又使用了该非静态内部类创建了一个静态的实例，该实例的生命周期和应用的一样长，这就导致了该静态实例一直会持有该Activity的引用，导致Activity的内存资源不能正常回收。
+
+正确的做法为：将该内部类设为静态内部类或将该内部类抽取出来封装成一个单例，如果需要使用Context，请使用Application Context
+
+* 匿名内部类/异步线程造成内存泄漏
+
+```java
+//——————test1
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                SystemClock.sleep(10000);
+                return null;
+            }
+        }.execute();
+//——————test2
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SystemClock.sleep(10000);
+            }
+        }).start();
+
+```
 
 
 

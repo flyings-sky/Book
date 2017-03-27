@@ -1,4 +1,4 @@
-1.Android的Activity什么时候会调用onCreate\(\)而不调用onStart\(\)?
+## 1.Android的Activity什么时候会调用onCreate\(\)而不调用onStart\(\)?
 
 * 直接在onCreate里面finish\(\);
 * 获取当前进程的id，使用Android.os.Process.killProcess\(android.os.Process.myPid\(\)\);杀死进程，可能在后台留有缓存
@@ -14,18 +14,18 @@ manager.restartPackage(getPackageName());
 
 这几种方法都是有缺陷的，都不能完全退出程序，第二种方式：他不会把当前应用程序的activity的task栈清空。第三种方式：它只能杀死其他应用程序而不能杀死自己的。
 
-2.引入内部类要解决的问题是什么？
+## 2.引入内部类要解决的问题是什么？
 
 * 一个类可以访问另一个类的私有成员\(封装性\)
 * 让java可以实现多继承
 
-3.内部类如何访问外部类的成员？
+## 3.内部类如何访问外部类的成员？
 
 1. 编译器自动为内部类添加一个成员变量，这个成员变量的类型和外部类的类型相同，这个成员变量就是指向外部类对象的引用；
 2. 编译器自动为内部类的构造方法添加一个参数，参数的类型是外部类的类型，在构造方法内部使用这个参数为1中添加的成员变量赋值；
 3. 在调用内部类的构造函数初始化内部类对象时，会传入外部类的引用。
 
-4.什么是内存泄漏？
+## 4.什么是内存泄漏？
 
 内存泄漏，简单说就是应该被释放的内存没有被释放，一直被某个实例引用但无法使用，导致GC无法回收，造成内存泄露；
 
@@ -33,7 +33,7 @@ manager.restartPackage(getPackageName());
 
 内存泄漏是造成OOM的主要原因之一，当一个应用中产生的内存泄漏比较多时，就难免会导致应用所需要的内存超过这个系统分配的内存限额，这就会导致应用Crash.
 
-5.Android中常见的产生内存泄漏的场景
+## 5.Android中常见的产生内存泄漏的场景
 
 * 单例造成的内存泄漏
 
@@ -229,7 +229,34 @@ Java对引用的分类有强引用，软引用，弱引用，虚引用
 
 ## **总结**
 
+       对Activity等组件的引用应该控制在Activity的生命周期之内，如果不能就考虑使用getApplicationContext或者getApplication，以避免Activity被外部长生命周期的对象引用而泄漏。
 
+       对于生命周期比Activity长的内部类对象，并且内部类中使用了外部类的成员变量，可以这样做避免内存泄漏：将内部类改为静态内部类，静态内部类中使用弱引用来引用外部类的成员变量。
+
+        Handler的持有的引用对象最好使用弱引用，资源释放时也可以清空Handler里面的消息。例如在Activity的onStop或者onDestory的时候，取消掉该Handler对象的Message和Runnable
+
+       在java的实现过程中，也要考虑其对象的释放，最好的方法是在不使用某对象时，显式地将此对象对象赋值为null，比如使用完Bitmap后先调用recycle\(\)，在赋值为null，清空对图片等资源有直接引用或者间接引用的数组（使用array.clear\(\);array = null）等，最好遵循谁创建谁释放的原则。
+
+       正确关闭资源，对于使用了BroadcastReceiver，ContentObserver，File，游标Cursor，Stream，Bitmap等资源的使用，应该在Activity销毁时及时关闭或者注销。
+
+       保持对对象生命周期的敏感，特别注意单例、静态对象、全局性集合等的生命周期。
+
+## 6.关于Broadcast和BroadcastReceiver
+
+### 自定义广播接收器的两种方式
+
+1. 静态注册
+
+```java
+<receiver android:name=".BroadcastReceiver1" >
+    <intent-filter>
+        <action android:name="android.intent.action.CALL" >
+        </action>
+    </intent-filter>
+</receiver>
+```
+
+1. 动态注册
 
 
 

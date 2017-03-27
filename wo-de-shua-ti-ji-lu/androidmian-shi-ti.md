@@ -156,5 +156,7 @@ static class MyAsyncTask extends AsyncTask<Void, Void, Void> {
 
 * Handler机制造成的内存泄漏
 
-       [参照Handler文章](/chapter1/yi-bu-zhi-xing/handler.md)
+  [Handler](/chapter1/yi-bu-zhi-xing/handler.md)
+
+
 

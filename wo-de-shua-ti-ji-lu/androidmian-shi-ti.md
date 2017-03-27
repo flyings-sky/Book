@@ -150,8 +150,11 @@ static class MyAsyncTask extends AsyncTask<Void, Void, Void> {
 //——————
     new Thread(new MyRunnable()).start();
     new MyAsyncTask(this).execute();
-
 ```
 
+这样就避免了Activity的内存资源泄漏，当然在Activity销毁时，也应该取消相应的任务AsyncTask::cancel\(\);避免任务在后台执行浪费资源。
 
+* Handler机制造成的内存泄漏
+
+       [参照Handler文章](/chapter1/yi-bu-zhi-xing/handler.md)
 

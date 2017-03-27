@@ -158,5 +158,63 @@ static class MyAsyncTask extends AsyncTask<Void, Void, Void> {
 
   [Handler](/chapter1/yi-bu-zhi-xing/handler.md)
 
+```java
+public class MainActivity extends AppCompatActivity {
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            //...
+        }
+    };
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        loadData();
+    }
+    private void loadData(){
+        //...request
+        Message message = Message.obtain();
+        mHandler.sendMessage(message);
+    }
+}
+
+```
+
+其中mHandler作为一个非静态匿名内部类，持有一个外部类—MainActivity的引用，我们知道对于消息机制是Looper不断的轮询从消息队列取出未处理的消息交给handler处理，而对于这个例子，每一个消息又持有一个mHandler的引用，每一个mHandler又持有MainActivity的引用，所以如果在Activity退出后，消息队列中还存在未处理完的消息，导致该Activity一直被引用，其内存资源无法被回收，导致了内存泄漏。一般我们使用静态内部类和弱引用的写法写Handler。
+
+```java
+public class MainActivity extends AppCompatActivity {
+    private MyHandler mHandler = new MyHandler(this);
+    private TextView mTextView ;
+    private static class MyHandler extends Handler {
+        private WeakReference<Context> reference;
+        public MyHandler(Context context) {
+            reference = new WeakReference<>(context);
+        }
+        @Override
+        public void handleMessage(Message msg) {
+            MainActivity activity = (MainActivity) reference.get();
+            if(activity != null){
+                activity.mTextView.setText("");
+            }
+        }
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        mTextView = (TextView)findViewById(R.id.textview);
+        loadData();
+    }
+    private void loadData() {
+        //...request
+        Message message = Message.obtain();
+        mHandler.sendMessage(message);
+    }
+}
+
+```
+
 
 

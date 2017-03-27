@@ -1,6 +1,6 @@
 * ## 1.Android的Activity什么时候会调用onCreate\(\)而不调用onStart\(\)?
-
 * 直接在onCreate里面finish\(\);
+
 * 获取当前进程的id，使用Android.os.Process.killProcess\(android.os.Process.myPid\(\)\);杀死进程，可能在后台留有缓存
 * 终止当前正在运行的java虚拟机，System.exit\(0\)，可以同时清除后台缓存的本进程，System.exit\(x\);x = 0表示正常退出，x != 0表示异常退出，x参数只是用来通知操作系统该程序是否是正常退出。
 * 强制关闭与该包关联的一切执行：

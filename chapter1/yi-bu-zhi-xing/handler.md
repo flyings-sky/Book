@@ -114,5 +114,5 @@ static class MyHandler extends Handler{
 }
 ```
 
-
+对于上面的代码，用户在关闭Activity之后，就算后台线程还没结束，但由于仅有一条来自Handler的弱引用指向Activity，所以GC仍然会在检查的时候把Activity回收。这样，内存泄漏的问题就不会出现了。
 

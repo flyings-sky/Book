@@ -117,6 +117,39 @@ public class MainActivity extends AppCompatActivity {
                 SystemClock.sleep(10000);
             }
         }).start();
+```
+
+上面的异步任务和Runnable都是一个匿名内部类，因此他们对当前的Activity都有一个隐式引用。如果在Activity在销毁之前，任务还未完成，那么将导致Activity的内存资源无法回收，造成内存泄露。正确的做法还是使用静态内部类的方式
+
+```java
+static class MyAsyncTask extends AsyncTask<Void, Void, Void> {
+        private WeakReference<Context> weakReference;
+        public MyAsyncTask(Context context) {
+            weakReference = new WeakReference<>(context);
+        }
+        @Override
+        protected Void doInBackground(Void... params) {
+            SystemClock.sleep(10000);
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            MainActivity activity = (MainActivity) weakReference.get();
+            if (activity != null) {
+                //...
+            }
+        }
+    }
+    static class MyRunnable implements Runnable{
+        @Override
+        public void run() {
+            SystemClock.sleep(10000);
+        }
+    }
+//——————
+    new Thread(new MyRunnable()).start();
+    new MyAsyncTask(this).execute();
 
 ```
 

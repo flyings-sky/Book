@@ -260,5 +260,15 @@ intentFilter.addAction(CALL_ACTION);
 context.registerReceiver(receiver, intentFilter);
 ```
 
+区别：如果在代码中注册，app退出后就接收不到广播
 
+自Android3.1开始，系统本身则增加了对所有app当前是否处于运行状态的跟踪，在发送广播时，不管是什么广播类型，系统默认直接增加了值为FLAG_EXCLUDE_STOPPED\_PACKAGES的flag，导致即使是静态注册的广播接收器，对于其所在进程已经退出的app，同样导致无法接收到广播。
+
+### 6.2BroadCastReceiver的生命周期
+
+广播接收者的生命周期非常短暂，在接收到广播的时候创建，onReceiver\(\)方法结束之后销毁；
+
+广播接收者中不要做一些耗时的工作，否则会弹出ANR\(Application No Response\)错误对话框；
+
+最好
 

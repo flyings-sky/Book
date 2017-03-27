@@ -116,3 +116,5 @@ static class MyHandler extends Handler{
 
 对于上面的代码，用户在关闭Activity之后，就算后台线程还没结束，但由于仅有一条来自Handler的弱引用指向Activity，所以GC仍然会在检查的时候把Activity回收。这样，内存泄漏的问题就不会出现了。
 
+Handler运行在主线程中\(UI线程中\)，它与子线程可以通过Message对象来传递数据，这个时候，Handler就承担着接受子线程传过来的（子线程用sendMessage\(\)和post\(\)方法传递的）Message对象（里面包含数据）的任务，把这些消息放入主线程队列中，配合主线程进行更新UI。
+

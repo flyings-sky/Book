@@ -229,7 +229,7 @@ Java对引用的分类有强引用，软引用，弱引用，虚引用
 
 ## **总结**
 
-1. 对   Activity等组件的引用应该控制在Activity的生命周期之内，如果不能就考虑使用getApplicationContext或者getApplication，以避免Activity被外部长生命周期的对象引用而泄漏。
+1. Activity等组件的引用应该控制在Activity的生命周期之内，如果不能就考虑使用getApplicationContext或者getApplication，以避免Activity被外部长生命周期的对象引用而泄漏。
 2. 对于生命周期比Activity长的内部类对象，并且内部类中使用了外部类的成员变量，可以这样做避免内存泄漏：将内部类改为静态内部类，静态内部类中使用弱引用来引用外部类的成员变量。
 3. Handler的持有的引用对象最好使用弱引用，资源释放时也可以清空Handler里面的消息。例如在Activity的onStop或者onDestory的时候，取消掉该Handler对象的Message和Runnable
 4. 在java的实现过程中，也要考虑其对象的释放，最好的方法是在不使用某对象时，显式地将此对象对象赋值为null，比如使用完Bitmap后先调用recycle\(\)，在赋值为null，清空对图片等资源有直接引用或者间接引用的数组（使用array.clear\\(\\);array = null）等，最好遵循谁创建谁释放的原则。

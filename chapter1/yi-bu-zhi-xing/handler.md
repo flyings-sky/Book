@@ -100,7 +100,7 @@ Handler mHandler = new Handler(){
 
 在Handler中增加一个对Activity的弱引用\(WeakReference\)：
 
-```
+```java
 static class MyHandler extends Handler{
     WeakReference mActivity;
     MyHandler(Activity acticity){

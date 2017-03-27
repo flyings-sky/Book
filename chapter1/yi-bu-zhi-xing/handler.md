@@ -123,7 +123,12 @@ Handler运行在主线程中\(UI线程中\)，它与子线程可以通过Message
 ## 总结
 
 * 通过Looper的prepare方法创建MessageQueue
-* 通过loop方法找到和当前线程匹配的Looper
+* 通过loop方法找到和当前线程匹配的Looper对象
+* 从Looper方法中取出消息队列对象mQueue
+* 在一个死循环中，从mQueue中取出Message对象
+* 调用每个Message对象的msg.target.dispatchMessage方法
+* 也就是Handler的dispatchMessage方法
+* 在dispatchMessage根据Message对象的特点执行特定方法。
 
 ```java
 public static void loop() {

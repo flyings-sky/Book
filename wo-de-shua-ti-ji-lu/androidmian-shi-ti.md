@@ -5,6 +5,7 @@
 * 获取当前进程的id，使用Android.os.Process.killProcess\(android.os.Process.myPid\(\)\);杀死进程，可能在后台留有缓存
 
 * 终止当前正在运行的java虚拟机，System.exit\(0\)，可以同时清除后台缓存的本进程，System.exit\(x\);x = 0表示正常退出，x != 0表示异常退出，x参数只是用来通知操作系统该程序是否是正常退出。
+
 * 强制关闭与该包关联的一切执行：
 
 ```java
@@ -310,6 +311,16 @@ context.registerReceiver(receiver, intentFilter);
 * 对于同一App内部发送和接收广播，将exported属性人为设置成false，使得非本App内部发出的此广播不被接收；
 * 在广播发送和接收时，都增加上相应的permission，用于权限验证；
 * 发送广播时，指定特定广播接收器所在的包名，具体是通过intent.setPackage\(packageName\)指定，这样此广播将只会发送到此包中的App内与之相匹配的有效广播接收器中。
+
+## 7.java的类加载机制\(待完善\)
+
+## 8.ArrayList和LinkedList的区别\(待完善\)
+
+## 9.MVP架构\(待完善\)
+
+## 10.自定义View
+
+
 
 
 

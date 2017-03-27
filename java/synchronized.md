@@ -1,0 +1,14 @@
+从JDK1.0开始，Java中每个对象都有一个内部锁，synchronized关键字就是使用对象的内部锁完成同步功能。它修饰的对象可以是方法、静态方法，代码块和类。
+
+synchronized关键字内部锁锁定的是调用代码块的对象。
+
+总结：
+
+* synchronized代码块只会影响同一对象的所有synchronized代码块的同步访问，不影响不同对象的同步访问，不影响同一对象的非synchronized代码块的同步访问。
+* synchronized可以修饰方法，但它不属于方法的一部分，因此，synchronized关键字不能被继承。如果父类方法使用synchronized关键字，而子类中覆盖了该方法，则子类这个方法默认是不同步的，必须显式的加上synchronized关键字才会同步。但是，若在子类中调用父类相应的同步方法，则子类的方法也就相当于同步了。定义接口方法时，不能使用synchronized关键字修饰。构造方法也不能使用synchronized关键字，但是可以使用synchronized修饰代码块来同步。
+* synchronized修饰静态方法时，作用范围是整个静态方法，作用的对象是这个类的所有对象。这是因为静态方法是属于类的而不属于对象，synchronized的内部锁锁定这个类所有对象。
+
+* synchronized修饰类时，作用范围是synchronized后面{}内的部分，作用的对象也是这个类的所有对象。
+
+
+

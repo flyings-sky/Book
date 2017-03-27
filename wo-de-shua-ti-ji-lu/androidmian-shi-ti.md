@@ -251,7 +251,14 @@ Java对引用的分类有强引用，软引用，弱引用，虚引用
 </receiver>
 ```
 
-1. 动态注册
+    2.动态注册
+
+```java
+receiver = new BroadcastReceiver();
+IntentFilter intentFilter = new IntentFilter();
+intentFilter.addAction(CALL_ACTION);
+context.registerReceiver(receiver, intentFilter);
+```
 
 
 

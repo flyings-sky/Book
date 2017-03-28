@@ -542,7 +542,7 @@ context.registerReceiver(receiver, intentFilter);
 
 ## 121.Vector以及实现线程安全的方式
 
-## 122.TCP/IP和HTTP的区别
+## 122.TCP/IP和HTTP的区
 
 ## 123.Android中常见的广播
 

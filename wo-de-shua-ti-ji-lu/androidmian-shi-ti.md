@@ -320,7 +320,57 @@ context.registerReceiver(receiver, intentFilter);
 
 ## 10.自定义View
 
+## 11.Volley，用的什么队列。缓存在本地的是个什么东西？
 
+## 12.MVC和MVP
+
+## 13.HashMap
+
+## 14.View的绘制
+
+## 15.Handler的工作原理
+
+## 16.loop死循环一直阻塞吗？（native层管道+epoll）
+
+## 17.锁\(从volatile到syn到自旋锁到自适应自旋锁到逃逸分析到锁细化到锁粗化到轻量锁到偏向锁\)
+
+## 18.内存模型
+
+## 19.内存分配
+
+## 20.静态常量池和运行时常量池
+
+## 21.反射机制
+
+## 22.类加载
+
+## 23.单链表成环
+
+## 24.ListView和RecycleView
+
+## 25.多种类型ItemTypeImageLoader
+
+## 26.结合情景问Activity生命周期
+
+## 27.结合情景问启动模式SingleTask
+
+## 28.问Volley返回的Response是啥?
+
+## 29.发起一个网络请求，说一个域名，整个过程（DNS解析，TCP链接，请求）
+
+## 30.DNS解析时域名服务器中没有找到IP地址会报啥错，
+
+## 31.TCP三次握手，为什么是三次？
+
+## 32.可靠还有哪些机制？\(流量控制，超时重传，拥塞控制，慢启动\)
+
+## 33.Handler中怎么让Looper阻塞?
+
+## 34.ConcurrentHashMap
+
+## 35.synchronized\(class\),synchronized\(Object\)的区别
+
+## 36.volatile和synchronized的区别
 
 
 

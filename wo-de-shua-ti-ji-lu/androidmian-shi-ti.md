@@ -440,5 +440,95 @@ context.registerReceiver(receiver, intentFilter);
 
 ## 70.Http状态码
 
+## 71.ListView和RecycleView的区别和优化
+
+## 72.事件分发机制
+
+## 73.http的一次请求过程
+
+## 74.hashMap、LinkedHashMap、CurryMap
+
+## 75.viewPager缓存
+
+## 76.红黑树
+
+## 77.二叉树广度优先遍历和深度优先遍历
+
+## 78.哈夫曼编码和哈夫曼树
+
+## 79.死锁产生的原因
+
+## 80.如何自定义View
+
+## 81.AsyncTask
+
+## 82.指针和引用的区别
+
+## 83.如何判断单向链表是否构成环
+
+## 84.Volley的优缺点
+
+## 85.LRU算法
+
+## 86.抽象类和接口的区别
+
+## 87.java内存泄露的原因，实际开发中遇到的内存泄漏的问题
+
+## 88.单例模式的安全性，双重锁的位置
+
+## 89.ImageLoader的缓存实现
+
+## 90.LruCache的实现
+
+## 91.TCP的拥塞
+
+## 92.缺页中断
+
+## 93.ArrayList的实现原理
+
+## 94.图片的双缓存怎么处理?
+
+## 95.程序为什么会发生OOM？怎么解决?
+
+## 96.dp,sp,px的区别
+
+## 97.margin和padding的区别
+
+## 98.使用多种方式实现一个圆角的按钮
+
+## 99.实现下拉刷新的多种方式
+
+## 100.View中使用View.post\(Runnable\)和Handler更新UI有什么区别？
+
+## 101.service的onStartCommand方法执行在哪个线程，intentService中线程怎么实现的？
+
+## 102.ArrayList和LinkedList的区别
+
+## 103.如何判断两个链表是否有交点？
+
+## 104.Activity和Fragment的区别、怎么通信？
+
+## 105.进程间通信，aidl,binder
+
+## 106.service启动方式，运行在哪个线程？
+
+## 107.主线程能不能进行网络请求，I/O操作
+
+## 108.如何解决ANR,OOM？
+
+## 109.线程间通信
+
+## 110.View动画和属性动画
+
+## 111.各种Collection区别、collections.sort\(\)是用什么算法排序的
+
+## 112.几种内部类的区别
+
+## 113.HashMap源码是如何实现插入的
+
+## 114.知道什么排序、时间复杂度、问了快排的时间复杂度为什么是nlog2n
+
+## 115.如何保证线程安全？
+
 
 

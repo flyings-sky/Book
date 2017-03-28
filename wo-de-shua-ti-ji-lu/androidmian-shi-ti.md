@@ -530,5 +530,29 @@ context.registerReceiver(receiver, intentFilter);
 
 ## 115.如何保证线程安全？
 
+## 116.操作系统中的进程通信，同步和互斥，怎么实现的。
+
+## 117.编译原理中怎么把源语言翻译成机器代码的
+
+## 118.Bitmap的问题，下载图片时以低分辨率下载的主要步骤
+
+## 119.Canavs和paint，屏幕\(0,0\)点，以及getX\(\)和getRawX\(\)的区别
+
+## 120.Socket
+
+## 121.Vector以及实现线程安全的方式
+
+## 122.TCP/IP和HTTP的区别
+
+## 123.Android中常见的广播
+
+## 124.ContentProvider的作用
+
+## 125.Android中数据持久化的方式
+
+## 126.进程分为前台进程，后台进程，守护进程，这些默认的分配大小
+
+## 127.EventBus底层实现，EventBus和观察者模式的区别
+
 
 

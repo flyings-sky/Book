@@ -7,11 +7,11 @@ RxJava是Reactive Extension(具有可观察流的异步编程API)的JVM实现:�
 [reactive-streams](https://mvnrepository.com/artifact/org.reactivestreams/reactive-streams/1.0.0)
 [RxJava](https://mvnrepository.com/artifact/io.reactivex.rxjava2/rxjava/2.1.0)
 如果是Android项目，添加下列依赖即可使用:
-```java```
+```Gradle```
 compile "io.reactivex.rxjava2:2.x.y"(x、y用版本号替代)
 compile 'io.reactivex.rxjava2:rxandroid:2.x.y'(x、y用版本号替代)
 
-```java
+```Gradle
 
 2.使用RxJava2写一个HelloWorld程序
 

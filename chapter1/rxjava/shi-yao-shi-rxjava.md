@@ -23,7 +23,7 @@ compile 'io.reactivex.rxjava2:rxandroid:2.x.y'(x、y用版本号替代)
 ## 2.使用RxJava2写一个HelloWorld程序
 
 ```java
-//未使用Lambda表达式简化
+//未使用Lambda表达式简化的代码
 public class Test {
     public static void main(String[] args) {
         Flowable.
@@ -34,6 +34,17 @@ public class Test {
                 System.out.println(s);
             }
         });
+    }
+}
+```
+
+```java
+//最终经过Lambda表达式简化的代码
+public class Test {
+    public static void main(String[] args) {
+        Flowable.
+                just("Hello world").
+                subscribe(System.out::println);
     }
 }
 ```

@@ -1,1 +1,1 @@
-　　RxJava是Reactive Extension(具有可观察流的异步编程API)的JVM实现:是一个通过使用可观察序列来组合异步和基于事件程序的第三方库。
+RxJava是Reactive Extension(具有可观察流的异步编程API)的JVM实现:是一个通过使用可观察序列来组合异步和基于事件程序的第三方库。

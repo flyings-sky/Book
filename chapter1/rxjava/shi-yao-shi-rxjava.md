@@ -3,7 +3,9 @@ RxJava是Reactive Extension(具有可观察流的异步编程API)的JVM实现:�
 #入门
 
 1.将RxJava2导入到你的项目中:
-如果是Java项目
+如果是Java项目,则需要自己到RxJava的Maven仓库中下载Jar包自己导入到项目中，
+[reactive-streams](https://mvnrepository.com/artifact/org.reactivestreams/reactive-streams/1.0.0)
+[RxJava](https://mvnrepository.com/artifact/io.reactivex.rxjava2/rxjava/2.1.0)
 
 
 如果是Android项目，添加下列依赖即可使用:

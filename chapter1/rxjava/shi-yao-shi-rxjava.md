@@ -9,4 +9,4 @@
 compile "io.reactivex.rxjava2:2.x.y"(x、y用版本号替代)
 
 ```
-2.写一个
+2.使用RxJava2写一个HelloWorld程序

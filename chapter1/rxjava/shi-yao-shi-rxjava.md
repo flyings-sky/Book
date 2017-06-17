@@ -3,7 +3,10 @@
 #入门
 
 1.将RxJava2导入到你的项目中:
+
+
 ```
 compile "io.reactivex.rxjava2:2.x.y"(x、y用版本号替代)
+
 ```
 2.写一个

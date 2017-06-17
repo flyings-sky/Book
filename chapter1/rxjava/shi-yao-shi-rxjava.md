@@ -5,7 +5,7 @@ RxJava是Reactive Extension(具有可观察流的异步编程API)的JVM实现:�
 1.将RxJava2导入到你的项目中:
 
 
-```
+```java
 compile "io.reactivex.rxjava2:2.x.y"(x、y用版本号替代)
 
 ```

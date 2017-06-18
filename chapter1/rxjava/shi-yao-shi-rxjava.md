@@ -49,3 +49,39 @@ public class Test {
 
 RxJava的常见用法是在后台线程中进行网络请求或者进行一些计算，然后在UI线程中显示后台操作的结果。
 
+```java
+//
+public class TestCommonUsage {
+    public static void main(String[] args) {
+        Flowable
+                .fromCallable(new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                //执行耗时操作
+                Thread.sleep(1000);
+                return "Done";
+            }
+        })
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.single())
+                .subscribe(
+                        new Consumer<String>() {
+                    //执行完耗时操作要进行的操作
+                    @Override
+                    public void accept(String s) throws Exception {
+                        System.out.println(s);
+                    }
+                }, //耗时操作过程中抛出异常要进行的操作
+                        new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        throwable.printStackTrace();
+                    }
+                });
+    }
+}
+
+```
+
+
+

@@ -115,5 +115,5 @@ public class TestCommonUsage {
         mThird.subscribe(System.out::println,Throwable::printStackTrace);
 ```
 
-
+通常，你可以使用subscribeOn操作符将I/O或者计算操作指定到其他非UI线程执行，一旦这些操作执行完毕，数据准备就绪，你就可以通过observeOn操作符，将线程切换回主线程，进行UI更新操作。
 

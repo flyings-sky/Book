@@ -82,5 +82,22 @@ public class TestCommonUsage {
 }
 ```
 
+```java
+public class TestCommonUsage {
+    public static void main(String[] args) {
+        Flowable
+                .fromCallable(() -> {
+                    //执行耗时操作
+                    Thread.sleep(1000);
+                    return "Done";
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.single())
+                .subscribe(System.out::println,
+                        Throwable::printStackTrace);
+    }
+}
+```
+
 
 

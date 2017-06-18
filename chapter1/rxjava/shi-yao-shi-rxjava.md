@@ -50,7 +50,7 @@ public class Test {
 RxJava的常见用法是在后台线程中进行网络请求或者进行一些计算，然后在UI线程中显示后台操作的结果。
 
 ```java
-//
+//未使用Lambda表达式
 public class TestCommonUsage {
     public static void main(String[] args) {
         Flowable
@@ -80,7 +80,6 @@ public class TestCommonUsage {
                 });
     }
 }
-
 ```
 
 

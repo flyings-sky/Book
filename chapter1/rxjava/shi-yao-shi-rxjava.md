@@ -100,5 +100,5 @@ public class TestCommonUsage {
 }
 ```
 
-
+这种链式调用的形式被称为流式API，书写形式类似于建造者模式，
 

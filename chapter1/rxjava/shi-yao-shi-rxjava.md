@@ -100,5 +100,20 @@ public class TestCommonUsage {
 }
 ```
 
-这种链式调用的形式被称为流式API，书写形式类似于建造者模式。然而，RxJava的反应类型是不可变的\(类似于String，每个方法都会返回一个新的String对象\)，每个方法的调用\(操作符的使用\)都会返回一个添加了某些行为新的Flowable
+这种链式调用的形式被称为流式API，书写形式类似于建造者模式。然而，RxJava的反应类型是不可变的\(类似于String，每个方法都会返回一个新的String对象\)，每个方法的调用\(操作符的使用\)都会返回一个添加了某些行为新的Flowable，示例代码如下：
+
+```java
+        //另一种形式
+        Flowable<String> mFirst = Flowable.fromCallable(() -> {
+            Thread.sleep(1000);
+            return "done";
+        });
+        //指定上一步发生的线程
+        Flowable<String> mSecond = mFirst.subscribeOn(Schedulers.io());
+        //指定下一步发生的线程
+        Flowable<String> mThird = mSecond.observeOn(Schedulers.single());
+        mThird.subscribe(System.out::println,Throwable::printStackTrace);
+```
+
+
 

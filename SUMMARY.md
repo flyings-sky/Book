@@ -7,6 +7,7 @@
     * [什么是RxJava?](chapter1/rxjava/shi-yao-shi-rxjava.md)
   * [异步执行](chapter1/yi-bu-zhi-xing.md)
     * [Handler](chapter1/yi-bu-zhi-xing/handler.md)
+  * [Activity](chapter1/activity.md)
 * [JAVA](java.md)
   * [Synchronized](java/synchronized.md)
   * [Java虚拟机](java/javaxu-ni-ji.md)

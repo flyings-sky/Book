@@ -8,6 +8,7 @@
   * [异步执行](chapter1/yi-bu-zhi-xing.md)
     * [Handler](chapter1/yi-bu-zhi-xing/handler.md)
   * [Activity](chapter1/activity.md)
+    * Activity的生命周期
 * [JAVA](java.md)
   * [Synchronized](java/synchronized.md)
   * [Java虚拟机](java/javaxu-ni-ji.md)

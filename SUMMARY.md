@@ -9,6 +9,7 @@
     * [Handler](chapter1/yi-bu-zhi-xing/handler.md)
   * [Activity](chapter1/activity.md)
     * [Activity的生命周期](chapter1/activity/activityde-sheng-ming-zhou-qi.md)
+    * [Activity的启动模式](chapter1/activity/activityde-qi-dong-mo-shi.md)
 * [JAVA](java.md)
   * [Synchronized](java/synchronized.md)
   * [Java虚拟机](java/javaxu-ni-ji.md)

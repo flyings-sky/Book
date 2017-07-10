@@ -6,5 +6,5 @@
 5. onStop：表示Activity即将停止(执行完该方法后Activity处于不可见状态)，此时仍然保留着所有状态和成员信息，因为在执行此方法时，被启动的Activity的onResume方法已经执行完毕(界面已经显示出来)，所以可以做一些稍微重量级的回收工作，但是最好不要太耗时，当其他地方需要内存时，处在该状态的Activity通常会被系统杀死；
 6. onDestory：表示Activity即将被销毁，在这里可以做一些回收和资源释放工作；
 7. onRestart：表示Activity正在重新启动，一般情况下从不可见状态变为可见状态时，onRestart就会被调用。
-![](https://developer.android.com/images/activity_lifecycle.png)
+![](/assets/activity_lifecycle.png)
 当使用startActivityForResult()方法启动的Activity在运行的过程中突然Crash掉了，那么会在父Activity中接收到一个值为RESULT_CANCELED的resultCode

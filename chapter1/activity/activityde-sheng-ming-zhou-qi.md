@@ -6,5 +6,10 @@
 5. onStop：表示Activity即将停止(执行完该方法后Activity处于不可见状态)，此时仍然保留着所有状态和成员信息，因为在执行此方法时，被启动的Activity的onResume方法已经执行完毕(界面已经显示出来)，所以可以做一些稍微重量级的回收工作，但是最好不要太耗时，当其他地方需要内存时，处在该状态的Activity通常会被系统杀死；
 6. onDestory：表示Activity即将被销毁，在这里可以做一些回收和资源释放工作；
 7. onRestart：表示Activity正在重新启动，一般情况下从不可见状态变为可见状态时，onRestart就会被调用。
-![](/assets/activity_lifecycle.png)
+![](http://oqnfoupsj.bkt.clouddn.com/17-7-10/71526340.jpg)
 当使用startActivityForResult()方法启动的Activity在运行的过程中突然Crash掉了，那么会在父Activity中接收到一个值为RESULT_CANCELED的resultCode
+#异常情况下的生命周期分析
+在默认情况下，当系统配置发生变化后，Activity就会被销毁重建，在销毁之前(确切的说是onStop之前)，会调用onSaveInstanceState(这个方法只会在Activity被异常终止的情况下调用)来保存当前Activity的状态，在Activity被重新创建之后，会将onSaveInstanceState方法里保存的Bundle对象作为参数传递给onCreate和onRestoreInstanceState(通常在onStart方法之后调用)方法进行数据的恢复。
+当Activity在异常情况下需要重新创建时，系统会默认为我们保存当前Activity的视图结构，并且在Activity重启后为我们恢复这些数据。
+###系统保存和恢复View层次结构的工作流程
+首先Activity被意外终止时，Activity会调用onSaveInstanceState去保存数据，然后Activity会委托Window去保存数据，接着Window再委托它上面的顶级容器去保存数据，顶层容器是一个ViewGroup(一般来说很可能是DecorView)，最后顶层容器再去一一通知它的子元素来保存数据，这样整个数据保存过程就完成了。

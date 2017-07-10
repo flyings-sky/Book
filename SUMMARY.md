@@ -17,7 +17,7 @@
 * [计算机网络](ji-suan-ji-wang-luo.md)
 * [操作系统](cao-zuo-xi-tong.md)
 * [我的刷题记录](wo-de-shua-ti-ji-lu.md)
-  * 算法题
+  * [算法题](wo-de-shua-ti-ji-lu/suan-fa-ti.md)
   * [Android面试题](wo-de-shua-ti-ji-lu/androidmian-shi-ti.md)
-  * Java面试题
+  * [Java面试题](wo-de-shua-ti-ji-lu/javamian-shi-ti.md)
 

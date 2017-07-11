@@ -7,4 +7,6 @@
 Calling startActivity from outside of an Activity Context requires the FLAG_ACTIVITY_NEW_TASK flag.Is this really what you want?
 ```
 这是因为standard模式的Activity默认会进入启动它的Activity所属的任务栈中，但是由于非Activity类型的Context并没有任务栈，所以就产生了问题，解决办法是给这个待启动的Activity添加一个FLAG_ACTIVITY_NEW_TASK标记位，这样这个活动在启动时就会创建一个新的任务栈(类似于singleTask模式进行启动)
-2. singleTop：栈顶复用模式，
+2. singleTop：栈顶复用模式，在这种模式下，如果新的Activity已经位于任务栈的栈顶，那么此Activity不会被重新创建，同时它的onNewIntent方法会被回调，通过此方法的参数我们可以取出当前请求的信息。
+3. singleTask：栈内复用模式，这是一种单实例模式，在这种模式下，只要Activity在一个栈中存在，那么多次启动此Activity都不会重新创建实例，系统会回调其onNewIntent。一个具有singleTask模式的Activity请求启动后，系统会首先查找是否存在A想要的任务栈，如果不存在，就重新创建一个任务栈，然后创建A的实例后把A放到栈中。如果存在A所需的任务栈，再看该任务栈中是否存在A的实例，如果存在，就将A调到栈顶(将A之上的所有实例出栈)并调用它的onNewIntent方法，如果实例不存在，就创建A的实例并且压入栈中。
+4. singleInstance:单实例模式，这是一种加强的singleTask模式，具有此种模式的Activity只能单独位于一个任务栈中(第一次启动时系统会为它创建一个新的任务栈，然后A独自在这个栈中，由于栈内复用的特性，后续启动时均不会创建新的Activity，除非这个任务栈被销毁了)

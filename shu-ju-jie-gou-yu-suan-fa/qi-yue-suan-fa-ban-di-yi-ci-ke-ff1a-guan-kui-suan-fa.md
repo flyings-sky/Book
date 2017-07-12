@@ -46,8 +46,23 @@ i <= j < n
 因此时间复杂度O(n^3)
 ####暴力法代码
 ```java
+    static class Result{
+        int max;
+        int start;
+        int end;
 
-public static int MaxSubArray(int [] array,int length){
+        private Result(int max, int start, int end) {
+            this.max = max;
+            this.start = start;
+            this.end = end;
+        }
+
+        @Override
+        public String toString() {
+            return "maxSum:"+max+"   start:"+start+"   end:"+end;
+        }
+    }
+    private static Result MaxSubArrayBaoLi(int [] array,int length){
         int maxSum = array[0];
         int currSum,start = 0,end = 0;
         for (int i = 0; i < length; i++) {
@@ -63,8 +78,80 @@ public static int MaxSubArray(int [] array,int length){
                 }
             }
         }
-        System.out.println("maxSum:"+maxSum+"   start:"+start+"   end:"+end);
-        return maxSum;
-}
+        return new Result(maxSum,start,end);
+    }
 
+```
+###分治法分析
+- 将数组从中间分开，那么最大子数组要么完全在左半边数组，要么完全在右半边数组，要么跨立在分界点上
+- 完全在左数组、右数组递归解决
+- 跨立在分界点上：实际上是左数组的最大后缀和右数组的最大前缀的和。因此，从分界点分别向前、后扫即可
+- 比较这三种情况，取最大的情况
+
+####分治法实现代码
+```java
+
+    static class Result{
+        int max;
+        int start;
+        int end;
+
+        private Result(int max, int start, int end) {
+            this.max = max;
+            this.start = start;
+            this.end = end;
+        }
+
+        @Override
+        public String toString() {
+            return "maxSum:"+max+"   start:"+start+"   end:"+end;
+        }
+    }
+    private static Result MaxAddSubFenZhi(int [] arr,int from,int to){
+        if(to == from){
+            return new Result(arr[from],0,0);
+        }
+        int middle = (from + to)/2,start,end;
+        Result m1 = MaxAddSubFenZhi(arr,from,middle);
+        Result m2 = MaxAddSubFenZhi(arr,middle+1,to);
+        int left = arr[middle],now = arr[middle];
+        start = middle;
+        for (int i = middle - 1; i >= from; i--) {
+            now += arr[i];
+            if(now > left){
+                left = now;
+                start = i;
+            }
+        }
+        int right = arr[middle+1];
+        now = arr[middle+1];
+        end = middle+1;
+        for (int i = middle + 2; i <= to; i++) {
+            now += arr[i];
+            if(now > right){
+                right = now;
+                end = i;
+            }
+        }
+        int sum = left + right;
+        Result m3 = new Result(sum,start,end);
+        Result maxSum = max(m1,m2,m3);
+        return maxSum;
+    }
+
+    private static Result max(Result m1,Result m2,Result m3){
+        if(m1.max >= m2.max&&m1.max >= m3.max){
+            return m1;
+        }
+
+        if(m2.max >= m1.max&&m2.max >= m3.max){
+            return m2;
+        }
+
+        if(m3.max >= m1.max&&m3.max >= m2.max){
+            return m3;
+        }
+
+        return new Result(-1,-1,-1);
+    }
 ```

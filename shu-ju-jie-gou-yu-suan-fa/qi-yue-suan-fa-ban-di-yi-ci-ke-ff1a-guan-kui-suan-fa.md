@@ -155,3 +155,5 @@ i <= j < n
         return new Result(-1,-1,-1);
     }
 ```
+####分治法的时间复杂度
+![](http://oqnfoupsj.bkt.clouddn.com/17-7-12/65545069.jpg)

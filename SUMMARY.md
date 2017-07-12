@@ -15,6 +15,7 @@
   * [Java虚拟机](java/javaxu-ni-ji.md)
     * [Java内存区域](java/javaxu-ni-ji/javanei-cun-qu-yu.md)
 * [数据结构与算法](shu-ju-jie-gou-yu-suan-fa.md)
+  * [七月算法班第一次课：管窥算法](shu-ju-jie-gou-yu-suan-fa/qi-yue-suan-fa-ban-di-yi-ci-ke-ff1a-guan-kui-suan-fa.md)
 * [计算机网络](ji-suan-ji-wang-luo.md)
 * [操作系统](cao-zuo-xi-tong.md)
 * [我的刷题记录](wo-de-shua-ti-ji-lu.md)

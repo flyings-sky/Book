@@ -44,4 +44,24 @@ a+b*(c-d)+e
 i <= j < n
 数组A的长度j-i+1最大为n
 因此时间复杂度O(n^3)
+####暴力法代码
+```java
 
+public static int MaxSubArray(int [] array,int length){
+        int maxSum = array[0];
+        int currSum;
+        for (int i = 0; i < length; i++) {
+            for (int j = i; j < length; j++) {
+                currSum = 0;
+                for (int k = i; k <= j ; k++) {
+                    currSum += array[k];
+                }
+                if(currSum > maxSum){
+                    maxSum = currSum;
+                }
+            }
+        }
+        return maxSum;
+}
+
+```

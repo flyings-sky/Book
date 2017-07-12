@@ -49,7 +49,7 @@ i <= j < n
 
 public static int MaxSubArray(int [] array,int length){
         int maxSum = array[0];
-        int currSum;
+        int currSum,start = 0,end = 0;
         for (int i = 0; i < length; i++) {
             for (int j = i; j < length; j++) {
                 currSum = 0;
@@ -58,9 +58,12 @@ public static int MaxSubArray(int [] array,int length){
                 }
                 if(currSum > maxSum){
                     maxSum = currSum;
+                    start = i;
+                    end = j;
                 }
             }
         }
+        System.out.println("maxSum:"+maxSum+"   start:"+start+"   end:"+end);
         return maxSum;
 }
 

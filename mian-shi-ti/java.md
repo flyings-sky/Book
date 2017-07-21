@@ -22,3 +22,5 @@
 可以引用。如果需要指定当前类时要用外部类.this来引用。如果引用局部变量，需要将局部变量指定为final。
 9. String s = new String("xyz");创建了几个String Object?二者之间有什么区别？
 2个对象。"xyz"创建在字符串常量池(jdk1.7之后已经被移到堆中)，new String()创建在堆中。
+10. try{}里面有一个return语句，那么紧跟在这个try后的finally{}里的code会不会被执行，什么时候被执行？
+会在return前执行

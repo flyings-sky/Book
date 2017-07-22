@@ -24,3 +24,12 @@
 2个对象。"xyz"创建在字符串常量池(jdk1.7之后已经被移到堆中)，new String()创建在堆中。
 10. try{}里面有一个return语句，那么紧跟在这个try后的finally{}里的code会不会被执行，什么时候被执行？
 会在return前执行
+11. Integer与int的区别
+Integer为包装类，int是基本数据类型。包装类拥有属性和方法，而基本数据类型没有，包装类可以通过intValue来转换成基本数据类型，也可以通过new Integer()将基本数据类型转换成包装类。在jdk1.5以后，包装类和基本数据类型可以实现自动转换。
+12. sleep()和wait()有什么区别？
+sleep是Thread类的方法,wait是Object类的方法。
+sleep是到时间自动唤醒，wait需要其他线程来唤醒notify。
+sleep不会释放同步锁,wait会释放同步锁。
+sleep可以在任意方法中,wait只能用在同步方法或者同步块中。
+Sleep()不会释放对象锁到时自动恢复，wait()会释放对象锁，然后进入等待队列，发出notify()/notifyAll方法后，才会进入锁池，准备获取对象锁，进入运行状态。
+

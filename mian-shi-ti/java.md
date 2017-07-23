@@ -84,4 +84,6 @@ JVM中类的装载是由ClassLoader和它的子类来实现的，Java ClassLoade
 序列化的实现：将需要被序列化的类实现Serializable接口，该接口没有需要实现的方法，实现该接口只是为了标注该对象是可以被序列化的，然后使用一个输出流(如:FileOutputStream)来构造一个ObjectOutputStream(对象流)对象，接着，使用ObjectOutputStream对象的writeObject(Object obj)方法就可以将参数为obj的对象写出到对象的载体(此处是文件)中(即保存其状态)，要恢复的话则用输入流。
 29. Anonymous Inner Class(匿名内部类)是否可以继承其他类，是否可以实现接口？
 匿名内部类可以继承类或实现接口，但不是显式的使用extends或implements来继承或实现。在使用匿名内部类时，必须继承一个类或者实现一个接口，但是两者不可兼得，不能定义构造函数，不能存在任何的静态成员变量和静态方法
-30. 
+30. ArrayList和Vector的区别，HashMap和HashTable的区别？
+ArrayList是JDK1.2引入的集合类并且线程不安全，Vector是1.0引入的集合类并且线程安全，二者用法类似。
+HashMap线程不安全且能放空值或空键，HashTable线程安全，不能放空值或空键。 

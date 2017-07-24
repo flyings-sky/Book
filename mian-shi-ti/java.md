@@ -150,6 +150,10 @@ preview.setImageBitmap(bitmap);
     * 注册没取消造成内存泄漏，如:广播，集合中的对象没清理造成的内存泄漏我们通常会把一些对象的引用加入到集合中，当我们不需要该对象时，并没有把它的引用从集合中清理掉，这样集合就会越来越大。如果这个集合是static的话，情况就更严重了
     * Handler应该声明为静态对象，并在其内部类中保存一个对外部类的弱引用。
 39. Iterator和Enumeration的不同
+    * 函数接口不同：Enumeration只有两个函数接口。通过Enumeration，我们只能读取集合数据，而不能对数据进行修改。Iterator只有3个函数接口。Iterator除了能读取集合数据之外，也能对数据进行删除操作。
+    * Enumeration是JDK1.0添加的接口。使用到它的函数包括Vector、Hashtable等类，这些类都是JDK1.0中加入的，Enumeration存在的目的就是为他们提供遍历接口。Enumeration本身并没有支持同步，而在Vector、Hashtable实现Enumeration时，添加了同步。而Iterator是JDK1.2添加的接口，它也是为了HashMap、ArrayList等集合提供遍历接口。
+    * Iterator支持快速失败机制的：当多个线程对同一个集合进行操作时，就可能会产生fail-fast事件。快速失败机制是Java集合中的一种错误机制，例如：当一个线程A通过Iterator去遍历某集合的过程中，若该集合的内容被其他线程所改变了；那么线程A访问集合时，就会抛出ConcurrentModificationException异常，产生快速失败事件。
+    
 
 
     

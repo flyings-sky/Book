@@ -134,6 +134,17 @@
     * 无法以返回值类型作为重载函数的区分标准。
 
     换言之，重载方法是区别同一个类中相同方法名的方法，重写方法是找到父类相同方法名的方法并改变方法的行为。
-
-
-
+37. Java中try、catch、finally的执行顺序
+先执行try中代码，发生异常执行catch中的代码，最后一定会执行finally中的代码
+38. 内存泄漏的原因
+    * 资源对象没关闭：如Cursor、File等资源。他们会在finalize中关闭，但这样效率太低，容易造成内存泄漏。SQLiteCursor，当数据量大的时候容易泄露。
+    * 使用Adapter时，没有使用系统缓存的converView
+    * 即时调用recycle()释放不再使用的Bitmap，适当降低Bitmap的采样率，如：
+```java    
+BitmapFactory.Options options = new BitmapFactory.Options();
+options.inSampleSize = 2;//图片宽高都为原来的二分之一，即图片为原来的四分之一。
+Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri),null,options);
+preview.setImageBitmap(bitmap);
+```
+    * 使用application的context来代替activity相关的context，尽量避免activity的context在自己范围外被使用，这样会导致activity无法释放
+    * 注册没取消造成内存泄漏，如:广播，集合中的对象没清理造成的内存泄漏我们通常会把一些对象的引用加入到集合中，当我们不需要该对象时，并没有把它的引用从集合中清理掉

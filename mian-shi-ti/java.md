@@ -147,4 +147,9 @@ Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri),null,options)
 preview.setImageBitmap(bitmap);
 ```
     * 使用application的context来代替activity相关的context，尽量避免activity的context在自己范围外被使用，这样会导致activity无法释放
-    * 注册没取消造成内存泄漏，如:广播，集合中的对象没清理造成的内存泄漏我们通常会把一些对象的引用加入到集合中，当我们不需要该对象时，并没有把它的引用从集合中清理掉
+    * 注册没取消造成内存泄漏，如:广播，集合中的对象没清理造成的内存泄漏我们通常会把一些对象的引用加入到集合中，当我们不需要该对象时，并没有把它的引用从集合中清理掉，这样集合就会越来越大。如果这个集合是static的话，情况就更严重了
+    * Handler应该声明为静态对象，并在其内部类中保存一个对外部类的弱引用。
+39. Iterator和Enumeration的不同
+
+
+    

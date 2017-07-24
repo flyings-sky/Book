@@ -153,6 +153,9 @@ preview.setImageBitmap(bitmap);
     * 函数接口不同：Enumeration只有两个函数接口。通过Enumeration，我们只能读取集合数据，而不能对数据进行修改。Iterator只有3个函数接口。Iterator除了能读取集合数据之外，也能对数据进行删除操作。
     * Enumeration是JDK1.0添加的接口。使用到它的函数包括Vector、Hashtable等类，这些类都是JDK1.0中加入的，Enumeration存在的目的就是为他们提供遍历接口。Enumeration本身并没有支持同步，而在Vector、Hashtable实现Enumeration时，添加了同步。而Iterator是JDK1.2添加的接口，它也是为了HashMap、ArrayList等集合提供遍历接口。
     * Iterator支持快速失败机制的：当多个线程对同一个集合进行操作时，就可能会产生fail-fast事件。快速失败机制是Java集合中的一种错误机制，例如：当一个线程A通过Iterator去遍历某集合的过程中，若该集合的内容被其他线程所改变了；那么线程A访问集合时，就会抛出ConcurrentModificationException异常，产生快速失败事件。
+40. 接口的注意点
+    * 接口中的字段全部默认为public static类型
+    *
     
 
 

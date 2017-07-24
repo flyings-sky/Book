@@ -86,4 +86,16 @@ JVM中类的装载是由ClassLoader和它的子类来实现的，Java ClassLoade
 匿名内部类可以继承类或实现接口，但不是显式的使用extends或implements来继承或实现。在使用匿名内部类时，必须继承一个类或者实现一个接口，但是两者不可兼得，不能定义构造函数，不能存在任何的静态成员变量和静态方法
 30. ArrayList和Vector的区别，HashMap和HashTable的区别？
 ArrayList是JDK1.2引入的集合类并且线程不安全，Vector是1.0引入的集合类并且线程安全，二者用法类似。
-HashMap线程不安全且能放空值或空键，HashTable线程安全，不能放空值或空键。 
+HashMap线程不安全且能放空值或空键，HashTable线程安全，不能放空值或空键。
+31. String和StringBuffer有什么差别？在什么情况下使用它们？
+String是字符串的基本类，该字符串是不可变的。StringBuffer是利用堆来存储字符串，并且可以对字符串的内容进行改变。
+32. new一个类对象和使用类名创建一个对象有什么区别？二者使用时应注意什么？？？？
+new是最常见的创建对象的方式，利用类模板是通过反射来创建对象。虽然new对象时在底层也会通过类模板来创建对象，但是new对象的效率要比直接通过类模板创建对象的方式要高。但是使用类模板的方式可以让程序的灵活性提高。
+33. LinkedList和ArrayList的区别？
+1)LinkedList是链表结构的集合，ArrayList是数组结构的集合
+2)LinkedList在中间或前面增加或删除数据时效率比ArrayList高
+3)LinkedList在最后添加或删除数据时效率比ArrayList低
+4)遍历数据时ArrayList效率高于LinkedList
+34. 介绍java开发中常用的集合框架？
+Java中的集合框架分为Collection和Map接口，Collection接口下的集合每个元素都由一个值组成，Map接口下的集合类每个元素都是由键值对组成的。
+Collection接口下面有List和Set接口，List接口下常见的类有ArrayList、LinkedList、Vector。它们中的元素可以重复，并且是有序的。Set接口下常见的类有HashSet、TreeSet。它们中的元素不能重复，而且是无序的。

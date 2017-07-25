@@ -28,4 +28,17 @@ android:theme = "@android:style/Theme.Translucent"
 6. 介绍一下Android系统的体系结构
 应用层：android的应用程序通常涉及用户界面和交互
 应用框架层：UI组件、各种管理器等
-函数库 
+函数库层：系统C层、媒体库、webkit、SQLite等
+linux核心库：linux系统运行的组件
+7. 描述一下横竖屏切换时activity的生命周期
+    * 不设置Activity的android:configChanges属性时，切屏会重新调用各个生命周期，横竖屏切换都执行一次生命周期
+    * 设置Activity的android:configChanges属性时，API13以上需要同时配置oriention和screenSize，API13以下，只要配置oriention，切屏时不会重新调用各个生命周期，只会执行onConfigurationChanged方法
+8. android中的动画有几种，他们的特点和区别是什么？
+三种
+    * FrameAnimation(逐帧动画)：将多张图片组合起来播放，类似于早期电影的工作原理，很多APP的loading是采用这种方式；
+    * TweenAnimation(补间动画)：是对某一个View进行一系列的动画操作，包括淡入淡出(Alpha),缩放(Scale),平移(Translate),旋转(Rotate)四种模式
+    * PropertyAnimation(属性动画)：属性动画不再仅仅是一种视觉效果了，而是一种不断地对值进行操作的机制，并将值赋到指定对象的指定属性上，可以是任意对象的任意属性。
+9. 一条最长的短信息约占多少byte？
+140byte,70个汉字
+10. 描述Handler机制的原理
+

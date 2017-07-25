@@ -48,3 +48,6 @@ Looper类用来管理特定线程内对象之间的消息交换。
 2)Handler：可以构造Handler对象来与Looper通信，以便push新消息到消息队列，或者接收Looper从消息队列取出所送来的消息。
 3)Message Queue(消息队列)：用来存放线程放入的消息。
 4)线程：UI线程通常是Main Thread，而Android程序启动时会自己在ActivityThread方法里创建一个Looper，这个Looper里面会包含一个消息队列。
+11. 如何将SQLite数据库(dictionary.db文件)与apk一起发布？
+可以将dictionary.db文件复制到Eclipse Android工程中的res/raw目录中，所有在res/raw目录中的文件不会被压缩，这样可以直接提取该目录中的文件。
+使用openDatabase方法来打开数据库文件，如果文件不存在，系统会自动创建/sdcard/dictionary目录，并将res/raw目录中的dictonary.db文件复制到/sdcard/dictionary目录中。

@@ -23,6 +23,6 @@
   * [Android面试题](wo-de-shua-ti-ji-lu/androidmian-shi-ti.md)
   * [Java面试题](wo-de-shua-ti-ji-lu/javamian-shi-ti.md)
 * [面试题](mian-shi-ti.md)
-  * Android
+  * [Android](mian-shi-ti/android.md)
   * [Java](mian-shi-ti/java.md)
 

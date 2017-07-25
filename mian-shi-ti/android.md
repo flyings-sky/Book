@@ -41,4 +41,10 @@ linux核心库：linux系统运行的组件
 9. 一条最长的短信息约占多少byte？
 140byte,70个汉字
 10. 描述Handler机制的原理
-
+android提供了Handler和Looper来满足线程间的通信。
+Handler先进先出原则。
+Looper类用来管理特定线程内对象之间的消息交换。
+1)Looper：一个线程可以产生一个Looper对象，由它来管理线程里面的消息队列
+2)Handler：可以构造Handler对象来与Looper通信，以便push新消息到消息队列，或者接收Looper从消息队列取出所送来的消息。
+3)Message Queue(消息队列)：用来存放线程放入的消息。
+4)线程：UI线程通常是Main Thread，而Android程序启动时会自己在ActivityThread方法里创建一个Looper，这个Looper里面会包含一个消息队列。

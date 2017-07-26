@@ -69,3 +69,7 @@ android鼓励弱耦合和组件的重用，在android中mvc的具体体现如下
 14. 如何启用Service，如何停用Service
 1)startService用于启动Service，stopService停止Service
 2)bindService绑定Service，unbindService解除Service的绑定
+15. 如何优化ListView？
+1)自定义适配器，在getView方法中要考虑传进来的convertView是否为null，如果为null就创建convertView并返回，如果不为null直接使用，这样可以尽可能少的创建View
+2)给convertView设置tag(setTag())，传入一个ViewHolder对象，用于缓存要显示的数据，可以达到图像数据异步加载的效果。
+3)如果ListView需要显示的item很多，就要考虑分页加载。比如一共要显示100条或者更多数据的时候，我们可以考虑先加载20条，等用户拉到列表底部的时候再去加载接下来的20条。

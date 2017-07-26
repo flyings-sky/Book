@@ -33,8 +33,9 @@ android:theme = "@android:style/Theme.Translucent"
 linux核心库：linux系统运行的组件  
 7. 描述一下横竖屏切换时activity的生命周期
 
-* 不设置Activity的android:configChanges属性时，切屏会重新调用各个生命周期，横竖屏切换都执行一次生命周期
-* 设置Activity的android:configChanges属性时，API13以上需要同时配置oriention和screenSize，API13以下，只要配置oriention，切屏时不会重新调用各个生命周期，只会执行onConfigurationChanged方法
+   * 不设置Activity的android:configChanges属性时，切屏会重新调用各个生命周期，横竖屏切换都执行一次生命周期
+   * 设置Activity的android:configChanges属性时，API13以上需要同时配置oriention和screenSize，API13以下，只要配置oriention，切屏时不会重新调用各个生命周期，只会执行onConfigurationChanged方法
+
 
 8.android中的动画有几种，他们的特点和区别是什么？
 
@@ -46,10 +47,10 @@ linux核心库：linux系统运行的组件
 
 
 
-9. 一条最长的短信息约占多少byte？  
+9.一条最长的短信息约占多少byte？  
 140byte,70个汉字
 
-1. 描述Handler机制的原理
+10.描述Handler机制的原理
 
 android提供了Handler和Looper来满足线程间的通信。
 
@@ -65,13 +66,13 @@ Looper类用来管理特定线程内对象之间的消息交换。
 
 4\)线程：UI线程通常是Main Thread，而Android程序启动时会自己在ActivityThread方法里创建一个Looper，这个Looper里面会包含一个消息队列。
 
-如何将SQLite数据库\(dictionary.db文件\)与apk一起发布？
+11.如何将SQLite数据库\(dictionary.db文件\)与apk一起发布？
 
 可以将dictionary.db文件复制到Eclipse Android工程中的res/raw目录中，所有在res/raw目录中的文件不会被压缩，这样可以直接提取该目录中的文件。
 
 使用openDatabase方法来打开数据库文件，如果文件不存在，系统会自动创建/sdcard/dictionary目录，并将res/raw目录中的dictonary.db文件复制到/sdcard/dictionary目录中。
 
-说说android中mvc的具体体现
+12.说说android中mvc的具体体现
 
 mvc是model，view，controller的缩写，mvc包含三个部分：
 
@@ -89,23 +90,20 @@ android鼓励弱耦合和组件的重用，在android中mvc的具体体现如下
 
 3\)模型层\(model\)：对数据库的操作，对网络的操作都应该在model里面处理，当然对业务计算等操作也是必须放在该层。
 
-1. 请介绍下Android常用的五中布局
+13.请介绍下Android常用的五中布局
+帧布局\(FrameLayout\)
+相对布局\(RelativeLayout\)
+线性布局\(LinearLayout\)
+表格布局\(TableLayout\)
+绝对布局\(AbsoluteLayout\)
 
-2. 帧布局\(FrameLayout\)
-
-3. 相对布局\(RelativeLayout\)
-
-4. 线性布局\(LinearLayout\)
-5. 表格布局\(TableLayout\)
-6. 绝对布局\(AbsoluteLayout\)
-
-7. 如何启用Service，如何停用Service
+14.如何启用Service，如何停用Service
 
 1\)startService用于启动Service，stopService停止Service
 
 2\)bindService绑定Service，unbindService解除Service的绑定
 
-1. 如何优化ListView？
+15.如何优化ListView？
 
 1\)自定义适配器，在getView方法中要考虑传进来的convertView是否为null，如果为null就创建convertView并返回，如果不为null直接使用，这样可以尽可能少的创建View
 
@@ -113,7 +111,7 @@ android鼓励弱耦合和组件的重用，在android中mvc的具体体现如下
 
 3\)如果ListView需要显示的item很多，就要考虑分页加载。比如一共要显示100条或者更多数据的时候，我们可以考虑先加载20条，等用户拉到列表底部的时候再去加载接下来的20条。
 
-1. 描述4中activity的启动模式
+16.描述4中activity的启动模式
 
 1\)standard：系统默认的模式，每次启动Activity都会生成一个新的实例
 
@@ -123,7 +121,7 @@ android鼓励弱耦合和组件的重用，在android中mvc的具体体现如下
 
 4\)singleInstance：设置为singleInstance的activity将独占一个任务栈，独占任务栈与其说是activity，倒不如说是一个应用，这个应用与其他activity是独立的，它有自己的上下文activity
 
-1. 什么是Intent，如何使用？
+17.什么是Intent，如何使用？
 
 Android基本的设计理念是鼓励减少组件间的耦合，因此Android提供了Intent，Intent提供了一种通用的消息系统，它允许在你的应用程序与其他的应用程序间传递Intent来执行动作和产生事件。使用Intent可以激活Android应用的三个核心组件:活动、服务和广播接收器。
 
@@ -133,27 +131,29 @@ Android基本的设计理念是鼓励减少组件间的耦合，因此Android提
 
 a通过广播方法\(比如sendBroadcast\(\)，sendOrderedBroadcast\(\),sendStickyBroadcast\(\)\)发送给Broadcast Receiver
 
-1. Android用的数据库是什么样的？它和sql有什么区别？为什么要用ContentProvider?它和sql的实现上有什么差别？
+18.Android用的数据库是什么样的？它和sql有什么区别？为什么要用ContentProvider?它和sql的实现上有什么差别？
 
 Android用的是SQLite数据库。它和其他网络数据库相似，也是通过SQL对数据进行管理，SQLite的操作非常简单，包括数据类型在建表时也可以不指定。
 
 使用ContentProvider可以将数据共享给其他应用，让除本应用之外的应用也可以访问本应用的数据，它的底层使用SQLite数据库实现的，所以其对数据做的各种操作都是以sql实现，只是在上层提供Uri
 
-1. 通过Intent传递一些二进制数据的方法有哪些？
+19.通过Intent传递一些二进制数据的方法有哪些？
 
 1\)使用Serializable接口实现序列化，这是Java的常用方法
 
 2\)实现Parcelable接口，这里Android的部分类比如Bitmap类就实现了，同时Parcelable在Android AIDL中交换数据也很常见。
 
-1. 对一些资源以及状态的操作保存，最好是保存在生命周期的那个函数中进行？
+20.对一些资源以及状态的操作保存，最好是保存在生命周期的那个函数中进行？
 
 onResume\(\)恢复数据,onPause\(\)保存数据
 
-1. 如何一次性地退出所有打开的Activity？
+21.如何一次性地退出所有打开的Activity？
 
 编写一个Activity作为入口，当需要关闭程序时，可以利用Activity的SingleTask模式跳转到该Activity，它上面的所有Activity都会被毁掉，然后再将该Activity关闭。或者在跳转时，设置intent.setFlags\(FLAG\_ACTIVITY\_CLEAR\_TOP\);这样就能将上面的Activity销毁掉。
 
-1. 说说Service的生命周期？
+22.说说Service的生命周期？
 
-启动
+启动Service的方式有两种，各自的生命周期也有所不同
+1)通过startService启动Service：onCreate、onStartCommand、onDestory
+2)通过bindService启动Service：onCreate、onBind、onUnbind、onDestory
 

@@ -49,7 +49,7 @@ linux核心库：linux系统运行的组件
 9. 一条最长的短信息约占多少byte？  
 140byte,70个汉字
 
-* 描述Handler机制的原理
+1. 描述Handler机制的原理
 
 android提供了Handler和Looper来满足线程间的通信。
 
@@ -94,6 +94,7 @@ android鼓励弱耦合和组件的重用，在android中mvc的具体体现如下
 2. 帧布局\(FrameLayout\)
 
 3. 相对布局\(RelativeLayout\)
+
 4. 线性布局\(LinearLayout\)
 5. 表格布局\(TableLayout\)
 6. 绝对布局\(AbsoluteLayout\)

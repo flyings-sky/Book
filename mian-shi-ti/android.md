@@ -51,3 +51,21 @@ Looper类用来管理特定线程内对象之间的消息交换。
 11. 如何将SQLite数据库(dictionary.db文件)与apk一起发布？
 可以将dictionary.db文件复制到Eclipse Android工程中的res/raw目录中，所有在res/raw目录中的文件不会被压缩，这样可以直接提取该目录中的文件。
 使用openDatabase方法来打开数据库文件，如果文件不存在，系统会自动创建/sdcard/dictionary目录，并将res/raw目录中的dictonary.db文件复制到/sdcard/dictionary目录中。
+12. 说说android中mvc的具体体现
+mvc是model，view，controller的缩写，mvc包含三个部分：
+model(模型)对象：是应用程序的主体部分，所有业务逻辑都应该写在该层。
+view(视图)对象：是程序中负责生成用户界面的部分，也是在整个mvc架构中用户唯一可以看到的一层，接收用户的输入，显示处理结果
+controller(控制器)对象：是根据用户的输入，控制用户界面数据显示及更新model对象状态的部分，控制器更重要的一种导航功能，响应用户发出的相关事件，交给model层处理.
+android鼓励弱耦合和组件的重用，在android中mvc的具体体现如下：
+1)视图(view)：一般采用xml文件进行界面描述，使用的时候可以非常方便的引入。
+2)控制层(controller)：android的控制层的责任通常落在了众多的activity的肩上，这句话也就暗含了不要在activity中写过多的代码，要通过activity交割model业务处理层处理，这样做的另外一个原因是android中的activity的响应时间是5s，如果耗时的操作放在这里，程序很容易被回收掉
+3)模型层(model)：对数据库的操作，对网络的操作都应该在model里面处理，当然对业务计算等操作也是必须放在该层。
+13. 请介绍下Android常用的五中布局
+    * 帧布局(FrameLayout)
+    * 相对布局(RelativeLayout)
+    * 线性布局(LinearLayout)
+    * 表格布局(TableLayout)
+    * 绝对布局(AbsoluteLayout)
+14. 如何启用Service，如何停用Service
+1)startService用于启动Service，stopService停止Service
+2)bindService绑定Service，unbindService解除Service的绑定

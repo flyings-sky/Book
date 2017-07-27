@@ -180,5 +180,23 @@ margin指外边距，表示组件与组件之间的距离。
 3)SQLite数据库存储数据
 4)使用ContentProvider存储数据
 5)网络存储数据
+31.如何对Android应用进行性能分析
+android性能主要指响应速度和UI刷新速度
+首先从函数的耗时来说，有一个工具TraceView这是Android SDK自带的工具，用于测量函数耗时的。
+UI布局分析，可以有两块：一块是Hierarchy Viewer可以看到View的层次，以及每个View刷新加载的时间。这样就可以很快定位到哪块layout/View耗时最长。还有一块就是通过自定义View来减少View的层次
+32.什么情况下会导致内存泄漏？
+内存泄漏的根本原因是:长生命周期的对象持有短生命周期的对象，导致短周期的对象无法及时释放。
+I.静态集合类引起内存泄漏
+主要是hashmap,Vector等，如果是静态集合，这些集合没有及时setnull的话，就会一直持有这些对象。
+II.remove方法无法删除set集，Objects.hash(firstName,lastName);
+经过测试，hashcode修改后，就没办法remove了
+III.observer我们我们在使用监听器的时候，往往是add\***Listener，但是当我们不需要的时候，忘记removeListener，就容易内存leak
+广播没有unregisterreceiver
+IV.各种数据链接没有关闭，数据库ContentProvider,io,socket等cursor
+V.内部类:
+java中的内部了(匿名内部类)，会持有宿主类的强引用this，所以如果是new Thread这种，后台线程操作，当线程没有执行结束时，activity不用被回收
+Context的引用，当TextView等等都会持有上下文的引用，如果有static drawable，就会导致该内存无法释放。
+VI.单例
+单例是一个全局的静态对象，当持有某个复制的类A时，A无法被释放，内存leak
 
 
